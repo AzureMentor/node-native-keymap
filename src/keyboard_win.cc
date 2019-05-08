@@ -480,7 +480,7 @@ namespace vscode_keyboard {
     uv_async_init(loop, &async, (uv_async_cb)asyncSendHandler);
 
     auto isolate = Isolate::GetCurrent();
-    v8::Handle<v8::Function> arg0 = v8::Handle<v8::Function>::Cast(args[0]);
+    v8::Local<v8::Function> arg0 = v8::Local<v8::Function>::Cast(args[0]);
     v8::Persistent<v8::Function> cb(isolate, arg0);
     _cb = cb;
 

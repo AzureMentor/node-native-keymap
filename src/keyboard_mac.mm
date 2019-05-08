@@ -189,7 +189,7 @@ static void asyncSendHandler(uv_async_t *handle) {
   auto global = context->Global();
 
   const int argc = 0;
-  v8::Handle<v8::Value> argv[argc];
+  v8::Local<v8::Value> argv[argc];
 
   auto fn = Local<v8::Function>::New(isolate, _cb);
   fn->Call(global, argc, argv);
@@ -200,7 +200,7 @@ void _OnDidChangeKeyboardLayout(const v8::FunctionCallbackInfo<v8::Value>& args)
   uv_async_init(loop, &async, (uv_async_cb)asyncSendHandler);
 
   auto isolate = Isolate::GetCurrent();
-  v8::Handle<v8::Function> arg0 = v8::Handle<v8::Function>::Cast(args[0]);
+  v8::Local<v8::Function> arg0 = v8::Local<v8::Function>::Cast(args[0]);
   v8::Persistent<v8::Function> cb(isolate, arg0);
   _cb = cb;
 
